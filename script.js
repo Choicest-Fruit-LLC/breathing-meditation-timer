@@ -107,3 +107,25 @@ let breathText = document.getElementById('breathText');
     showAnimation(currentAnimationIndex);
 
     updateBreathText(isInhale ? 'Breathe In' : 'Breathe Out');
+
+    const bgAudio = document.getElementById('bgAudio');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const muteBtn = document.getElementById('muteBtn');
+
+    let isPlaying = false;
+
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        bgAudio.pause();
+        playPauseBtn.textContent = 'Play';
+      } else {
+        bgAudio.play();
+        playPauseBtn.textContent = 'Pause';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    muteBtn.addEventListener('click', () => {
+      bgAudio.muted = !bgAudio.muted;
+      muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
+    });
