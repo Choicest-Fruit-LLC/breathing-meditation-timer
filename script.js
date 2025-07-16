@@ -78,3 +78,31 @@ let breathText = document.getElementById('breathText');
       timerDisplay.textContent = '00:00';
       affirmationDisplay.textContent = 'You are calm, capable, and strong.';
     }
+
+    const bgAudio = document.getElementById('bgAudio');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const muteBtn = document.getElementById('muteBtn');
+
+let isPlaying = false;
+
+playPauseBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgAudio.pause();
+    playPauseBtn.textContent = 'Play';
+  } else {
+    bgAudio.play();
+    playPauseBtn.textContent = 'Pause';
+  }
+  isPlaying = !isPlaying;
+});
+
+muteBtn.addEventListener('click', () => {
+  bgAudio.muted = !bgAudio.muted;
+  muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
+});
+
+// Optional: Reset buttons if audio ends (shouldn't happen with loop, but for safety)
+bgAudio.addEventListener('ended', () => {
+  playPauseBtn.textContent = 'Play';
+  isPlaying = false;
+});
