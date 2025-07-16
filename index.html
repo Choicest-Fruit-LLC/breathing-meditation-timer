@@ -34,14 +34,18 @@
       <button onclick="resetExercise()">Reset</button>
     </div>
     <div class="timer" id="timerDisplay">00:00</div>
+    <div id="endSessionBtns" style="display:none; margin:1rem 0;">
+      <button onclick="extendSession()">Extend 1 min</button>
+      <button onclick="restartSession()">Restart</button>
+    </div>
     <div class="affirmation" id="affirmationDisplay">You are calm, capable, and strong.</div>
     <div class="audio-controls">
       <button id="playPauseBtn">Play</button>
       <button id="muteBtn">Mute</button>
+      <button id="loopSessionBtn">Loop Session</button>
     </div>
     <audio id="bgAudio" loop>
       <source src="sound/ocean-wave.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
     </audio>
   </div>
   
