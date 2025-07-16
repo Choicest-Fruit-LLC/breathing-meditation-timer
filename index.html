@@ -10,7 +10,17 @@
 <body>
   <div class="container">
     <h1>Breathing & Meditation Timer</h1>
-    <div class="circle" id="breathText">Breathe In</div>
+    
+    <!-- Breathing Animation Selector -->
+    <button id="animationFlipBtn" style="margin-bottom:1rem;">Change Animation</button>
+    <span id="currentAnimationLabel" style="display:block; margin-bottom:1rem; font-weight:bold;">Blooming Circle</span>
+    
+    <!-- Animation Containers (replace .circle) -->
+    <div id="bloomCircle" class="breath-visual"><span id="breathText">Breathe In</span></div>
+    <div id="pulseDot" class="breath-visual" style="display:none;"><span id="breathTextDot">Breathe In</span></div>
+    <div id="waveRing" class="breath-visual" style="display:none;"><span id="breathTextWave">Breathe In</span></div>
+    <div id="pulseSquare" class="breath-visual" style="display:none;"><span id="breathTextSquare">Breathe In</span></div>
+    
     <label for="durationSelect">Session Duration:</label>
     <select id="durationSelect">
       <option value="1">1 min 🌸 </option>

@@ -1,12 +1,10 @@
 let breathText = document.getElementById('breathText');
     let timerDisplay = document.getElementById('timerDisplay');
     let affirmationDisplay = document.getElementById('affirmationDisplay');
-    let durationSelect = document.getElementById('durationSelect'); // <-- new
 
     let time = 0;
     let interval;
     let isInhale = true;
-    let sessionDuration = 60; 
 
     const affirmations = [
       "You are calm, capable, and strong.",
@@ -32,12 +30,6 @@ let breathText = document.getElementById('breathText');
       }, 500);
     }
 
-  
-    durationSelect.addEventListener('change', function() {
-      sessionDuration = parseInt(durationSelect.value) * 60;
-      resetExercise();
-    });
-
     function startExercise() {
       if (!interval) {
         updateAffirmation();
@@ -52,13 +44,6 @@ let breathText = document.getElementById('breathText');
             isInhale = !isInhale;
             breathText.textContent = isInhale ? 'Breathe In' : 'Breathe Out';
             updateAffirmation();
-          }
-
-          // Stop session when time is up
-          if (time >= sessionDuration) {
-            pauseExercise();
-            breathText.textContent = 'Session Complete!';
-            affirmationDisplay.textContent = 'Great job! Your session is finished.';
           }
         }, 1000);
       }
@@ -79,30 +64,46 @@ let breathText = document.getElementById('breathText');
       affirmationDisplay.textContent = 'You are calm, capable, and strong.';
     }
 
-    const bgAudio = document.getElementById('bgAudio');
-const playPauseBtn = document.getElementById('playPauseBtn');
-const muteBtn = document.getElementById('muteBtn');
+    function updateBreathText(text) {
+      breathText.textContent = text;
+      if (document.getElementById('breathTextDot')) document.getElementById('breathTextDot').textContent = text;
+      if (document.getElementById('breathTextWave')) document.getElementById('breathTextWave').textContent = text;
+      if (document.getElementById('breathTextSquare')) document.getElementById('breathTextSquare').textContent = text;
+    }
 
-let isPlaying = false;
+    // Animation flip logic for breathing visuals
 
-playPauseBtn.addEventListener('click', () => {
-  if (isPlaying) {
-    bgAudio.pause();
-    playPauseBtn.textContent = 'Play';
-  } else {
-    bgAudio.play();
-    playPauseBtn.textContent = 'Pause';
-  }
-  isPlaying = !isPlaying;
-});
+    const bloomCircle = document.getElementById('bloomCircle');
+    const pulseDot = document.getElementById('pulseDot');
+    const waveRing = document.getElementById('waveRing');
+    const pulseSquare = document.getElementById('pulseSquare');
+    const animationFlipBtn = document.getElementById('animationFlipBtn');
+    const currentAnimationLabel = document.getElementById('currentAnimationLabel');
 
-muteBtn.addEventListener('click', () => {
-  bgAudio.muted = !bgAudio.muted;
-  muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
-});
+    const animations = [
+      { id: 'bloomCircle', label: 'Blooming Circle' },
+      { id: 'pulseDot', label: 'Pulsing Dot' },
+      { id: 'waveRing', label: 'Wave Ring' },
+      { id: 'pulseSquare', label: 'Pulsing Square' }
+    ];
+    let currentAnimationIndex = 0;
 
-// Optional: Reset buttons if audio ends (shouldn't happen with loop, but for safety)
-bgAudio.addEventListener('ended', () => {
-  playPauseBtn.textContent = 'Play';
-  isPlaying = false;
-});
+    function showAnimation(index) {
+      bloomCircle.style.display = 'none';
+      pulseDot.style.display = 'none';
+      waveRing.style.display = 'none';
+      pulseSquare.style.display = 'none';
+      const anim = animations[index].id;
+      document.getElementById(anim).style.display = 'flex';
+      currentAnimationLabel.textContent = animations[index].label;
+    }
+
+    animationFlipBtn.addEventListener('click', function() {
+      currentAnimationIndex = (currentAnimationIndex + 1) % animations.length;
+      showAnimation(currentAnimationIndex);
+    });
+
+    // Show the first animation on page load
+    showAnimation(currentAnimationIndex);
+
+    updateBreathText(isInhale ? 'Breathe In' : 'Breathe Out');
