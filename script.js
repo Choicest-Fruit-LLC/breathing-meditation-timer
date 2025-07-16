@@ -5,6 +5,7 @@ let breathText = document.getElementById('breathText');
     let time = 0;
     let interval;
     let isInhale = true;
+    let isLoopSession = false;
 
     const affirmations = [
       "You are calm, capable, and strong.",
@@ -108,24 +109,53 @@ let breathText = document.getElementById('breathText');
 
     updateBreathText(isInhale ? 'Breathe In' : 'Breathe Out');
 
-    const bgAudio = document.getElementById('bgAudio');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const muteBtn = document.getElementById('muteBtn');
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgAudio = document.getElementById('bgAudio');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const muteBtn = document.getElementById('muteBtn');
+      const loopSessionBtn = document.getElementById('loopSessionBtn');
 
-    let isPlaying = false;
+      playPauseBtn.addEventListener('click', function() {
+        if (bgAudio.paused) {
+          bgAudio.play();
+          playPauseBtn.textContent = 'Pause';
+        } else {
+          bgAudio.pause();
+          playPauseBtn.textContent = 'Play';
+        }
+      });
 
-    playPauseBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        bgAudio.pause();
-        playPauseBtn.textContent = 'Play';
-      } else {
-        bgAudio.play();
-        playPauseBtn.textContent = 'Pause';
+      muteBtn.addEventListener('click', function() {
+        bgAudio.muted = !bgAudio.muted;
+        muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
+      });
+
+      loopSessionBtn.addEventListener('click', function() {
+        isLoopSession = !isLoopSession;
+        loopSessionBtn.textContent = isLoopSession ? 'Looping...' : 'Loop Session';
+        loopSessionBtn.classList.toggle('active', isLoopSession);
+      });
+    });
+
+    // Modify onTimerEnd to loop if enabled
+    function onTimerEnd() {
+      document.getElementById('endSessionBtns').style.display = 'block';
+      if (isLoopSession) {
+        setTimeout(() => {
+          restartSession();
+        }, 1000); // 1 second pause before looping
       }
-      isPlaying = !isPlaying;
-    });
+    }
 
-    muteBtn.addEventListener('click', () => {
-      bgAudio.muted = !bgAudio.muted;
-      muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
-    });
+    function extendSession() {
+      // Add 1 minute to timer and restart
+      time += 60;
+      document.getElementById('endSessionBtns').style.display = 'none';
+    }
+
+    function restartSession() {
+      // Reset timer and start again
+      resetExercise();
+      startExercise();
+      document.getElementById('endSessionBtns').style.display = 'none';
+    }
