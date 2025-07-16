@@ -1,10 +1,12 @@
- let breathText = document.getElementById('breathText');
+let breathText = document.getElementById('breathText');
     let timerDisplay = document.getElementById('timerDisplay');
     let affirmationDisplay = document.getElementById('affirmationDisplay');
+    let durationSelect = document.getElementById('durationSelect'); // <-- new
 
     let time = 0;
     let interval;
     let isInhale = true;
+    let sessionDuration = 60; 
 
     const affirmations = [
       "You are calm, capable, and strong.",
@@ -30,6 +32,12 @@
       }, 500);
     }
 
+  
+    durationSelect.addEventListener('change', function() {
+      sessionDuration = parseInt(durationSelect.value) * 60;
+      resetExercise();
+    });
+
     function startExercise() {
       if (!interval) {
         updateAffirmation();
@@ -44,6 +52,13 @@
             isInhale = !isInhale;
             breathText.textContent = isInhale ? 'Breathe In' : 'Breathe Out';
             updateAffirmation();
+          }
+
+          // Stop session when time is up
+          if (time >= sessionDuration) {
+            pauseExercise();
+            breathText.textContent = 'Session Complete!';
+            affirmationDisplay.textContent = 'Great job! Your session is finished.';
           }
         }, 1000);
       }
