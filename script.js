@@ -66,11 +66,25 @@ let breathText = document.getElementById('breathText');
     }
 
     function updateBreathText(text) {
-      breathText.textContent = text;
+      document.getElementById('breathText').textContent = text;
       if (document.getElementById('breathTextDot')) document.getElementById('breathTextDot').textContent = text;
       if (document.getElementById('breathTextWave')) document.getElementById('breathTextWave').textContent = text;
       if (document.getElementById('breathTextSquare')) document.getElementById('breathTextSquare').textContent = text;
     }
+
+    // Start the breathing animation loop
+    function startBreathingLoop() {
+      clearInterval(interval);
+      updateBreathText('Breathe In');
+      isInhale = true;
+      interval = setInterval(() => {
+        isInhale = !isInhale;
+        updateBreathText(isInhale ? 'Breathe In' : 'Breathe Out');
+      }, 5000); // 4 seconds
+    }
+
+    // Call this when you want to start the breathing animation
+    startBreathingLoop();
 
     // Animation flip logic for breathing visuals
 
