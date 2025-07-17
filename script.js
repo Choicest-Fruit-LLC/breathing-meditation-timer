@@ -168,7 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
     loopSessionBtn.textContent = isLoopSession ? 'Looping...' : 'Loop Session';
     loopSessionBtn.classList.toggle('active', isLoopSession);
   });
-});
+
+
 
 // Modify onTimerEnd to loop if enabled
 function onTimerEnd() {
@@ -206,3 +207,29 @@ function startBreathingLoop() {
 
 // Call this when you want to start the breathing animation
 startBreathingLoop();
+
+// Theme toggle logic ARYAN //
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const body = document.body;
+  const container = document.querySelector('.container');
+
+  // Default to light mode
+  body.classList.add('light-mode');
+  container.classList.add('light-mode');
+
+  themeToggleBtn.addEventListener('click', function() {
+    if (body.classList.contains('light-mode')) {
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+      container.classList.remove('light-mode');
+      container.classList.add('dark-mode');
+      themeToggleBtn.textContent = '☀️ Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      body.classList.add('light-mode');
+      container.classList.remove('dark-mode');
+      container.classList.add('light-mode');
+      themeToggleBtn.textContent = '🌙 Dark Mode';
+    }
+  });
+});
