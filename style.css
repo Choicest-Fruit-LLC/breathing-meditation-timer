@@ -115,6 +115,7 @@
       height: 200px;
       position: relative;
       margin-bottom: 2.5rem; /* Add or increase this value */
+      z-index: 1;
     }
     
     /* Blooming Circle */
@@ -192,11 +193,17 @@
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
+      z-index: 2;
+      position: relative;
     }
     #animationFlipBtn:hover {
       background: #f0f0f0;
     }
     
+    #currentAnimationLabel {
+      z-index: 2;
+      position: relative;
+    }
   
     
     /* Pulsing Square */
