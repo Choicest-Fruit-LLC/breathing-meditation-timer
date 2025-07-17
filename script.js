@@ -244,11 +244,36 @@ function startBreathingExercise() {
     clearInterval(breathingInterval);
   }
 
+
+  playPauseBtn.addEventListener('click', function() {
+    if (bgAudio.paused) {
+      bgAudio.play();
+      playPauseBtn.textContent = 'Pause';
+    } else {
+      bgAudio.pause();
+      playPauseBtn.textContent = 'Play';
+    }
+  });
+
+  muteBtn.addEventListener('click', function() {
+    bgAudio.muted = !bgAudio.muted;
+    muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
+  });
+
+  loopSessionBtn.addEventListener('click', function() {
+    isLoopSession = !isLoopSession;
+    loopSessionBtn.textContent = isLoopSession ? 'Looping...' : 'Loop Session';
+    loopSessionBtn.classList.toggle('active', isLoopSession);
+  });
+
+
+
   // Update breathing text and animation
   function updateBreathingStep() {
     const stepDuration = rhythmSteps[stepIndex];
     const stepText = ['Breathe In', 'Hold', 'Breathe Out', 'Hold'][stepIndex] || 'Breathe In';
     breathText.textContent = stepText;
+
 
     stepIndex = (stepIndex + 1) % rhythmSteps.length; // Cycle through steps
   }
@@ -315,10 +340,38 @@ function startBreathingLoop() {
 
 // Call this when you want to start the breathing animation
 startBreathingLoop();
-=======
+
+
+// Theme toggle logic ARYAN //
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const body = document.body;
+  const container = document.querySelector('.container');
+
+  // Default to light mode
+  body.classList.add('light-mode');
+  container.classList.add('light-mode');
+
+  themeToggleBtn.addEventListener('click', function() {
+    if (body.classList.contains('light-mode')) {
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+      container.classList.remove('light-mode');
+      container.classList.add('dark-mode');
+      themeToggleBtn.textContent = '☀️ Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      body.classList.add('light-mode');
+      container.classList.remove('dark-mode');
+      container.classList.add('light-mode');
+      themeToggleBtn.textContent = '🌙 Dark Mode';
+    }
+  });
+});
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
   // Ensure the default animation is visible
   animations[currentAnimation].style.display = 'block';
 });
+
 
