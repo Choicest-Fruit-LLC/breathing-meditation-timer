@@ -26,7 +26,13 @@
   <span id="breathTextSquare">Breathe In</span>
   <div class="square"></div>
 </div>
-    
+    <!-- Breathing Rhythm Selector -->
+   <label for="rhythmSelect" style="display:block; margin-top:1rem;">Breathing Rhythm:</label>
+   <select id="rhythmSelect">
+     <option value="4-4">Default (4s Inhale / 4s Exhale)</option>
+     <option value="4-7-8">4-7-8 Breathing (4s Inhale / 7s Hold / 8s Exhale)</option>
+     <option value="box">Box Breathing (4s Inhale / 4s Hold / 4s Exhale / 4s Hold)</option>
+   </select>
     <label for="durationSelect">Session Duration:</label>
     <select id="durationSelect">
       <option value="1">1 min 🌸 </option>
@@ -55,7 +61,7 @@
     </audio>
     <div class="reminders" id="remindersDisplay" style="margin-top:2rem;"></div>
   </div>
-  
+   
 
   <script src="script.js">  
   </script>
