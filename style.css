@@ -1,439 +1,331 @@
-* {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      min-height: 100vh; /* was height: 100vh; */
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
-/* Light and Dark Mode Styles ARYAN*/
-    body.light-mode {
-      background: linear-gradient(to right, #e0e7ff, #fff);
-      color: #222;
-    }
-    body.dark-mode {
-      background: linear-gradient(to right, #232526, #414345);
-      color: #fff;
-    }
-    .concainter.light-mode {
-      background: rgba(255,255,255,0.8);
-    }
-    .container.dark-mode {
-      background: rgba(34,34,34,0.8);
-    }
-
-    /* Shared button styles */
-    button,
-    .audio-controls button,
-    #animationFlipBtn,
-    #themeToggleBtn {
-      padding: 0.6rem 1.2rem;
-      background: #fff;
-      color: #0072ff;
-      border: none;
-      border-radius: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-
-    /* Center the theme toggle button */
-    #themeToggleBtn {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Dark mode button styles */
-    body.dark-mode button,
-    body.dark-mode .audio-controls button,
-    body.dark-mode #animationFlipBtn,
-    body.dark-mode #themeToggleBtn {
-      background: #555454;
-      color: #e0e7ff;
-    }
-
-    /* Button hover effect */
-    button:hover,
-    .audio-controls button:hover,
-    #animationFlipBtn:hover,
-    #themeToggleBtn:hover {
-      background: #f0f0f0;
-      color: #0057b8;
-    }
-
-    body.dark-mode button:hover,
-    body.dark-mode .audio-controls button:hover,
-    body.dark-mode #animationFlipBtn:hover,
-    body.dark-mode #themeToggleBtn:hover {
-      background: #414345;
-      color: #ffffff;
-    }
-
-  #themeToggleBtn {
-      padding: 0.6rem 1.2rem;
-      background: #fff;
-      color: #0072ff;
-      border: none;
-      border-radius: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      margin-bottom: 1rem;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    body.dark-mode #themeToggleBtn {
-      background: #555454;
-      color: #000000;
-    }
-/* Light mode breathing text */
-body.light-mode .breath-visual span {
-  color: #0072ff;
-  text-shadow: 0 2px 8px rgba(0,114,255,0.12);
+/* === Base Styles === */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.5s ease, color 0.5s ease;
 }
-/* Dark mode breathing text */
-body.dark-mode .breath-visual span {
-  color: #e0e7ff;
-  text-shadow: 0 2px 8px rgba(160,100,255,0.18);
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+  min-height: 100vh;
 }
-/* Breathing Meditation Timer Styles ARYAN */
-/* Light Mode */
-body.light-mode label[for="durationSelect"] {
-  color: #0072ff;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-/* Dark Mode label */
-body.dark-mode label[for="durationSelect"] {
-  color: #e0e7ff;
-  font-weight:bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-/* Light mode session duration button */
-body.light-mode #durationSelect {
+
+button, select {
+  margin: 0.5rem;
   padding: 0.6rem 1.2rem;
+  border-radius: 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+  background: #fff;
+  color: #0072ff;
+  box-shadow: 0 2px 8px rgba(0,114,255,0.08);
+}
+
+button:hover, select:hover {
+  background: #f0f0f0;
+  color: #0057b8;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+}
+
+.timer {
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.affirmation {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.audio-controls, .controls {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* === Theme Styles === */
+body.light-mode {
+  background: linear-gradient(to right, #e0e7ff, #fff);
+  color: #222;
+}
+
+body.dark-mode {
+  background: linear-gradient(to right, #232526, #414345);
+  color: #fff;
+}
+
+.light-mode .container {
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.dark-mode .container {
+  background: rgba(34,34,34,0.8);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* === Breathing Visual Styles === */
+.breath-visual {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+/* Blooming Circle */
+#bloomCircle {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.973) 60%, #0072ff 100%);
+  box-shadow: 0 0 40px 10px #0072ff55;
+  animation: bloom 4s cubic-bezier(.4,.8,.6,1) infinite;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Pulse Dot */
+#pulseDot {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 0 30px 10px rgba(159, 100, 255, 0.699);
+  border-radius: 50%;
+  animation: pulseDot 4s cubic-bezier(.4,.8,.6,1) infinite;
+  margin-bottom: 20px;
+}
+
+/* Wave Ring */
+.wave {
+  margin-top: 20px;
+  width: 140px;
+  height: 140px;
+  border: 8px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: waveBreath 4s infinite;
+  box-shadow: 0 0 40px 10px rgba(159, 100, 255, 0.699);
+}
+
+
+/* Text Animation */
+#breathText, #breathTextDot, #breathTextWave, #breathTextSquare {
+  animation: bloomText 4s infinite;
+  font-size: 1.5rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #000000;
+  position: absolute;
+  width: 100%;
+}
+
+/* === Notification === */
+#callNotification {
+  background: #ffc107;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* === Buttons === */
+#themeToggleBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+/* Light mode buttons */
+body.light-mode button,
+body.light-mode .audio-controls button,
+body.light-mode #animationFlipBtn,
+body.light-mode #themeToggleBtn {
   background: #fff;
   color: #0072ff;
   border: none;
   border-radius: 1.2rem;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-  margin-bottom: 1rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   box-shadow: 0 2px 8px rgba(0,114,255,0.08);
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Dark mode session duration button */
-body.dark-mode #durationSelect {
-  padding: 0.6rem 1.2rem;
-  background: #555454;
+/* Dark mode buttons */
+body.dark-mode button,
+body.dark-mode .audio-controls button,
+body.dark-mode #animationFlipBtn,
+body.dark-mode #themeToggleBtn {
+  background: #232526;
   color: #e0e7ff;
   border: none;
   border-radius: 1.2rem;
   font-weight: bold;
-  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(160,100,255,0.12);
   transition: background 0.3s, color 0.3s;
+}
+
+/* Button hover effect */
+button:hover,
+.audio-controls button:hover,
+#animationFlipBtn:hover,
+#themeToggleBtn:hover {
+  background: #f0f0f0;
+  color: #0057b8;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .audio-controls button:hover,
+body.dark-mode #animationFlipBtn:hover,
+body.dark-mode #themeToggleBtn:hover {
+  background: #414345;
+  color: #b3aaff;
+}
+
+/* Light mode selectors */
+body.light-mode #rhythmSelect,
+body.light-mode #durationSelect {
+  background: #fff;
+  color: #0072ff;
+  border: none;
+  border-radius: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,114,255,0.08);
+  padding: 0.6rem 1.2rem;
   margin-bottom: 1rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark mode selectors */
+body.dark-mode #rhythmSelect,
+body.dark-mode #durationSelect {
+  background: #232526;
+  color: #e0e7ff;
+  border: none;
+  border-radius: 1.2rem;
+  font-weight: bold;
   box-shadow: 0 2px 8px rgba(160,100,255,0.12);
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.3s, color 0.3s;
 }
 
-    /* Animation Theme Visuals ARYAN */
+/* === Responsive === */
+@media (max-width: 600px) {
+  .breath-visual {
+    height: 150px;
+  }
 
-    /* Blooming Circle */
+  .circle, .wave, .square {
+    width: 100px;
+    height: 100px;
+  }
+
+  button, select {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@keyframes bloom {
+  0%   { transform: scale(1); opacity: 0.8; }
+  40%  { transform: scale(1.25); opacity: 1; }
+  60%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+}
+
+/* Wave Ring Animation */
+@keyframes waveBreath {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Pulse Square Animation */
+@keyframes pulseSquare {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* Text Bloom Animation */
+@keyframes bloomText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 body.light-mode #bloomCircle {
-  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.3) 60%, rgba(32, 32, 32, 0.25) 100%);
-  box-shadow: 0 0 40px 10px rgba(0,198,255,0.15);
+  background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.973) 60%, #0072ff 100%);
+  box-shadow: 0 0 40px 10px #0072ff55;
 }
-body.dark-mode #bloomCircle {
-  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.3) 60%, rgba(0,0,0,0.25) 100%);
-  box-shadow: 0 0 40px 10px rgba(159, 100, 255, 0.699);
+body.dark-mode #bloomCircle 
+body.light-mode #pulseDot {
+  background: #0072ff;
+  box-shadow: 0 0 30px 10px #0072ff55;
 }
 
-/* Pulsing Dot */
-body.light-mode #pulseDot {
-  background: rgba(255,255,255,0.3);
-  box-shadow: 0 0 30px 10px rgba(0, 115, 255, 0.486);
-}
 body.dark-mode #pulseDot {
-  background: rgba(255,255,255,0.3);
+  background: rgba(160,100,255,0.25);
   box-shadow: 0 0 30px 10px rgba(159, 100, 255, 0.699);
 }
 
-/* Pulsing Square */
-body.light-mode .square {
-  background: rgba(255, 255, 255, 0.3);
-  border: solid 4px rgba(0, 115, 255, 0.932);
-  box-shadow: 0 0 20px 5px rgba(0, 115, 255, 0.486);
-}
 
-body.dark-mode .square {
-  background: rgba(255,255,255,0.3);
-  box-shadow: 0 0 20px 5px rgba(159, 100, 255, 0.699);
-}
-
-/* Wave Ring */
 body.light-mode #waveRing .wave {
-  border: 8px solid rgba(0, 115, 255, 0.932);
-  box-shadow: 0 0 40px 10px rgba(0, 115, 255, 0.486);
+  border: 8px solid #0072ff;
+  box-shadow: 0 0 40px 10px #0072ff55;
 }
+
 body.dark-mode #waveRing .wave {
-  border: 8px solid rgba(255,255,255,0.3);
+  border: 8px solid rgba(159, 100, 255, 0.699);
   box-shadow: 0 0 40px 10px rgba(159, 100, 255, 0.699);
 }
 
-
-
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      max-width: 400px;
-      width: 100%;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .circle {
-      width: 200px;
-      height: 200px;
-      margin: 2rem auto 1rem auto;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      animation: pulse 4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-    .controls button {
-      margin: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: #fff;
-      color: #0072ff;
-      border: none;
-      border-radius: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .controls button:hover {
-      background: #f0f0f0;
-    }
-    .timer {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-    .affirmation {
-      margin-top: 2rem;
-      font-style: italic;
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 1rem;
-      transition: opacity 0.5s ease-in-out;
-    }
-    #durationSelect {
-      margin-bottom: 1rem;
-      padding: 0.4rem 1rem;
-      border-radius: 1rem;
-      border: none;
-      font-size: 1rem;
-      color: #0072ff;
-    }
-    label[for="durationSelect"] {
-      margin-bottom: 0.5rem;
-      display: block;
-      font-weight: bold;
-    }
-    .audio-controls {
-      margin-top: 4rem;
-      margin-bottom: 20px; /* Added for spacing */
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .audio-controls button {
-      margin-top: 3rem;
-      padding: 0.5rem 1.2rem;
-      background: #fff;
-      color: #0072ff;
-      border: none;
-      border-radius: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .audio-controls button:hover {
-      background: #555454;
-    }
-    
-    /* ==== Breathing Visuals ====  */
-    .breath-visual {
-      margin: 2rem auto 1rem auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 200px;
-      height: 200px;
-      position: relative;
-    }
-    
-    /* Blooming Circle */
-    #bloomCircle {
-      border-radius: 50%;
-      background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.3) 60%, rgba(3, 5, 5, 0.25) 100%);
-      animation: bloom 4s cubic-bezier(.4,.8,.6,1) infinite;
-      box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.979);
-      margin-bottom: 20px;
-    }
-    @keyframes bloom {
-      0%   { transform: scale(1); opacity: 0.8; }
-      40%  { transform: scale(1.25); opacity: 1; }
-      60%  { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
-    }
-    
-    /* Pulsing Dot */
-    #pulseDot {
-      border-radius: 50%;
-      background: rgb(154, 34, 201);
-      width: 140px;
-      height: 140px;
-      box-shadow: 0 0 30px 10px rgb(255, 255, 255);
-      animation: pulseDot 4s cubic-bezier(.4,.8,.6,1) infinite;
-    }
-    @keyframes pulseDot {
-      0%   { transform: scale(1.5); opacity: 1; }
-      40%  { transform: scale(1); opacity: 0.7; }
-      60%  { transform: scale(1.2); opacity: 0.8; }
-      100% { transform: scale(1.5); opacity: 1; }
-    }
-    
-    /* Wave Ring */
-    #waveRing {
-      width: 200px;
-      height: 200px;
-      position: relative;
-      background: none;
-    }
-    #waveRing .wave {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      border: 8px solid rgb(255, 255, 255); /* light purple */
-      box-shadow: 0 0 40px 10px rgb(255, 255, 255);
-      animation: waveBreath 4s cubic-bezier(.4,.8,.6,1) infinite;
-    }
-    @keyframes waveBreath {
-      0%   { transform: scale(0.9); opacity: 0.7; border-width: 8px; }
-      40%  { transform: scale(1.15); opacity: 1; border-width: 16px; }
-      60%  { transform: scale(1.05); opacity: 1; border-width: 12px; }
-      100% { transform: scale(0.9); opacity: 0.7; border-width: 8px; }
-    }
-    
-    
-    @media (max-width: 500px) {
-      .breath-visual, #waveRing {
-        width: 120px;
-        height: 120px;
-      }
-      #pulseDot {
-        width: 36px;
-        height: 36px;
-      }
-    }
-    #animationFlipBtn {
-      margin-bottom: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: #fff;
-      color: #0072ff;
-      border: none;
-      border-radius: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 2;
-      position: relative;
-    }
-    #animationFlipBtn:hover {
-      background: #f0f0f0;
-    }
-    
-    #currentAnimationLabel {
-      z-index: 2;
-      position: relative;
-    }
-  
-    
-    /* Pulsing Square */
-    #pulseSquare {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .square {
-      width: 140px;
-      height: 140px;
-      background: rgba(29, 29, 29, 0.164); /* light purple */
-      box-shadow: 0 0 20px 5px rgb(255, 255, 255);
-      animation: pulseSquare 4s cubic-bezier(.4,.8,.6,1) infinite;
-    }
-
-    @keyframes pulseSquare {
-      0%   { transform: scale(1); opacity: 0.7; }
-      40%  { transform: scale(1.3); opacity: 1; }
-      60%  { transform: scale(1.15); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.7; }
-    }
-    
-    .breath-visual span {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      font-size: 1.5rem;
-      color: #ffffff;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      animation: bloomText 4s cubic-bezier(.4,.8,.6,1) infinite;
-    }
-
-    @keyframes bloomText {
-      0%   { transform: translateY(-50%) scale(1); opacity: 0.8; }
-      40%  { transform: translateY(-50%) scale(1.25); opacity: 1; }
-      60%  { transform: translateY(-50%) scale(1.3); opacity: 1; }
-      100% { transform: translateY(-50%) scale(1); opacity: 0.8; }
-    }
+.breath-visual span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 170px));
+  font-weight: bold;
+  animation: bloomText 4s cubic-bezier(.4,.8,.6,1) infinite;
+}
