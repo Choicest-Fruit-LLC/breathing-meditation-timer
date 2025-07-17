@@ -12,8 +12,9 @@
     <h1>Breathing & Meditation Timer</h1>
     
     <!-- Breathing Animation Selector -->
-    <button id="animationFlipBtn" style="margin-bottom:1rem;">Change Animation</button>
-    <span id="currentAnimationLabel" style="display:block; margin-bottom:1rem; font-weight:bold;">Blooming Circle</span>
+    <button id="animationFlipBtn">Change Animation</button>
+    <br>
+    <span id="currentAnimationLabel" style="display:block; margin-top:0.5rem; font-weight:bold;">Blooming Circle</span>
     
     <!-- Animation Containers (replace .circle) -->
     <div id="bloomCircle" class="breath-visual"><span id="breathText">Breathe In</span></div>
@@ -26,7 +27,13 @@
   <span id="breathTextSquare">Breathe In</span>
   <div class="square"></div>
 </div>
-    
+    <!-- Breathing Rhythm Selector -->
+   <label for="rhythmSelect" style="display:block; margin-top:1rem;">Breathing Rhythm:</label>
+   <select id="rhythmSelect">
+     <option value="4-4">Default (4s Inhale / 4s Exhale)</option>
+     <option value="4-7-8">4-7-8 Breathing (4s Inhale / 7s Hold / 8s Exhale)</option>
+     <option value="box">Box Breathing (4s Inhale / 4s Hold / 4s Exhale / 4s Hold)</option>
+   </select>
     <label for="durationSelect">Session Duration:</label>
     <select id="durationSelect">
       <option value="1">1 min 🌸 </option>
@@ -53,11 +60,14 @@
     <audio id="bgAudio" loop>
       <source src="sound/ocean-wave.mp3" type="audio/mpeg">
     </audio>
+    <div class="reminders" id="remindersDisplay" style="margin-top:2rem;"></div>
   </div>
   <div id="callNotification" style="display:none; position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); background:#fffbe8; color:#333; padding:1rem 2rem; border-radius:1rem; box-shadow:0 2px 12px rgba(0,0,0,0.15); font-weight:bold; z-index:1000;">
   📞 Take a moment to call a loved one!
   <button onclick="dismissNotification()" style="margin-left:1rem;">Dismiss</button>
 </div>
+   
+
   <script src="script.js">  
   </script>
 </body>
