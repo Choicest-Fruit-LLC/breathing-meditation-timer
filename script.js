@@ -31,6 +31,14 @@ let breathText = document.getElementById('breathText');
       }, 500);
     }
 
+    function showCallNotification() {
+      document.getElementById('callNotification').style.display = 'block';
+    }
+
+    function dismissNotification() {
+      document.getElementById('callNotification').style.display = 'none';
+    }
+
     function startExercise() {
       if (!interval) {
         updateAffirmation();
@@ -47,6 +55,9 @@ let breathText = document.getElementById('breathText');
             updateAffirmation();
           }
         }, 1000);
+
+        // Show notification after 1 minute
+        setTimeout(showCallNotification, 60000);
       }
     }
 
