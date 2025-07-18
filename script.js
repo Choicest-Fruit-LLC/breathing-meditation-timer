@@ -86,7 +86,7 @@ let breathText = document.getElementById('breathText');
     }
 
     // Start the breathing animation loop
-    function startBreathingLoop() {
+    function startBreathingLoop() 
       clearInterval(interval);
       updateBreathText('Breathe In');
       isInhale = true;
@@ -370,8 +370,43 @@ startBreathingLoop();
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure the default animation is visible
-  animations[currentAnimation].style.display = 'block';
+  // Animation containers
+  const animations = {
+    bloomCircle: document.getElementById('bloomCircle'),
+    pulseDot: document.getElementById('pulseDot'),
+    waveRing: document.getElementById('waveRing'),
+    pulseSquare: document.getElementById('pulseSquare'),
+  };
+  let currentAnimation = 'bloomCircle';
+  const animationFlipBtn = document.getElementById('animationFlipBtn');
+  const currentAnimationLabel = document.getElementById('currentAnimationLabel');
+
+  // Show only the current animation
+  function showAnimation(name) {
+    Object.keys(animations).forEach(key => {
+      if (animations[key]) animations[key].style.display = (key === name) ? 'block' : 'none';
+    });
+    if (currentAnimationLabel) {
+      currentAnimationLabel.textContent = {
+        bloomCircle: 'Blooming Circle',
+        pulseDot: 'Pulsing Dot',
+        waveRing: 'Wave Ring',
+        pulseSquare: 'Pulsing Square'
+      }[name] || name;
+    }
+  }
+
+  // Flip animation on button click
+  animationFlipBtn.addEventListener('click', () => {
+    const keys = Object.keys(animations);
+    let idx = keys.indexOf(currentAnimation);
+    idx = (idx + 1) % keys.length;
+    currentAnimation = keys[idx];
+    showAnimation(currentAnimation);
+  });
+
+  // Show the default animation on load
+  showAnimation(currentAnimation);
 });
 
 
