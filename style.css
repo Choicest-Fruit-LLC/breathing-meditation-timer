@@ -246,7 +246,8 @@ body.dark-mode #themeToggleBtn:hover {
 
 /* Light mode selectors */
 body.light-mode #rhythmSelect,
-body.light-mode #durationSelect {
+body.light-mode #durationSelect,
+body.light-mode #backgroundSelect {
   background: #fff;
   color: #0072ff;
   border: none;
@@ -263,7 +264,8 @@ body.light-mode #durationSelect {
 
 /* Dark mode selectors */
 body.dark-mode #rhythmSelect,
-body.dark-mode #durationSelect {
+body.dark-mode #durationSelect,
+body.dark-mode #backgroundSelect {
   background: #232526;
   color: #e0e7ff;
   border: none;
