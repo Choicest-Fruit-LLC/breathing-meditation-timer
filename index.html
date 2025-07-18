@@ -65,11 +65,14 @@
     <!-- Call Notification -->
     <div id="callNotification" style="display:none;">
       📞 Take a moment to call a loved one!
-      <button onclick="dismissNotification()">Dismiss</button>
+      <button id="dismissNotificationBtn">Dismiss</button>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.getElementById('dismissNotificationBtn').addEventListener('click', dismissNotification);
+  </script>
 </body>
 </html>
 
