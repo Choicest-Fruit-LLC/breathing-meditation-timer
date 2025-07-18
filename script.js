@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBreathingBtn = document.getElementById('startBreathing');
   const stopBreathingBtn = document.getElementById('stopBreathing');
   const callNotification = document.getElementById('callNotification');
+  const bgAudio = document.getElementById('bgAudio');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const muteBtn = document.getElementById('muteBtn');
 
   // Removed pulseSquare here
   const animations = {
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let stretchInterval = null;
   let isInhale = true;
   let currentAnimation = 'bloomCircle';
+  let isPlaying = false;
 
   // === DATA ===
   const affirmations = [
@@ -191,7 +195,21 @@ function showAnimation(name) {
     themeToggleBtn.textContent = isLight ? '☀️ Light Mode' : '🌙 Dark Mode';
   }
 
-  
+  playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      bgAudio.pause();
+      playPauseBtn.textContent = 'Play Music';
+    } else {
+      bgAudio.play();
+      playPauseBtn.textContent = 'Pause Music';
+    }
+    isPlaying = !isPlaying;
+  });
+
+  muteBtn.addEventListener('click', () => {
+    bgAudio.muted = !bgAudio.muted;
+    muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
+  });
 
   // === INIT ===
   // Show default animation
