@@ -415,12 +415,12 @@ body.dark-mode {
 }
 /* === The Wave Ring Visual Element === */
 .wave {
-  width: 200px; /* adjust if needed */
-  height: 200px; /* adjust if needed */
+  width: 172.5px; /* adjust if needed */
+  height: 172.5px;
+  margin-left: 10px; /* adjust if needed */
   border-radius: 50%;
   border: 2px solid currentColor;
   position: relative;
-  animation: waveRing 4s infinite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -431,7 +431,7 @@ body.dark-mode {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   text-align: center;
   
 }
