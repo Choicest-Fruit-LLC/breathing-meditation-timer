@@ -7,7 +7,6 @@ const themeToggleBtn = document.getElementById('themeToggleBtn');
 const body = document.body;
 const container = document.querySelector('.container');
 const animationFlipBtn = document.getElementById('animationFlipBtn');
-const currentAnimationLabel = document.getElementById('currentAnimationLabel');
 const rhythmSelect = document.getElementById('rhythmSelect');
 const durationSelect = document.getElementById('durationSelect');
 const startBreathingBtn = document.getElementById('startBreathing');
@@ -165,7 +164,6 @@ function flipAnimation() {
   animations[currentAnimation].style.display = 'none';
   currentAnimation = keys[nextIndex];
   animations[currentAnimation].style.display = 'block';
-  currentAnimationLabel.textContent = currentAnimation.replace(/([A-Z])/g, ' $1').trim();
 }
 
 function toggleTheme() {

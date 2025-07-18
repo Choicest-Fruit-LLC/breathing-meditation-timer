@@ -1,21 +1,44 @@
 /* === Base Styles === */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  transition: background 0.5s ease, color 0.5s ease;
-}
-
-.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 2rem;
-  transition: background 0.5s ease, box-shadow 0.5s ease;
-  min-height: 100vh;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrollbars */
 }
 
+/* The card-style container */
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  overflow: visible; /* this lets animations breathe */
+  z-index: 0;
+}
+
+/* Center inline/inline-block elements inside container for both light and dark modes */
+.container.light-mode,
+.container.dark-mode {
+  text-align: center;
+}
+
+/* Center block-level animation elements horizontally */
+#bloomCircle,
+#pulseDot,
+#waveRing {
+  margin-left: auto;
+  margin-right: auto;
+}
 button, select {
   margin: 0.5rem;
   padding: 0.6rem 1.2rem;
@@ -82,6 +105,14 @@ body.dark-mode {
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
+/* Center block-level animation elements horizontally */
+#bloomCircle,
+#pulseDot,
+#waveRing {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* === Breathing Visual Styles === */
 .breath-visual {
   margin: 2rem 0;
@@ -89,6 +120,7 @@ body.dark-mode {
   align-items: center;
   justify-content: center;
   height: 200px;
+  position: relative;
 }
 
 /* Blooming Circle */
@@ -296,7 +328,12 @@ body.light-mode #bloomCircle {
   background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.973) 60%, #0072ff 100%);
   box-shadow: 0 0 40px 10px #0072ff55;
 }
-body.dark-mode #bloomCircle 
+
+body.dark-mode #bloomCircle {
+  background: radial-gradient(circle at 60% 40%, rgba(160,100,255,0.8) 60%, #a084ff 100%);
+  box-shadow: 0 0 40px 10px rgba(160,100,255,0.6);
+}
+
 body.light-mode #pulseDot {
   background: #0072ff;
   box-shadow: 0 0 30px 10px #0072ff55;
@@ -306,7 +343,6 @@ body.dark-mode #pulseDot {
   background: rgba(160,100,255,0.25);
   box-shadow: 0 0 30px 10px rgba(159, 100, 255, 0.699);
 }
-
 
 body.light-mode #waveRing .wave {
   border: 8px solid #0072ff;
@@ -324,8 +360,84 @@ body.dark-mode #waveRing .wave {
   text-align: center;
   font-size: 1.5rem;
   left: 0;
-  top: 50%;
-  transform: translate(-50%, calc(-50% + 170px));
+  color: inherit;
   font-weight: bold;
-  animation: bloomText 4s cubic-bezier(.4,.8,.6,1) infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Specific positioning for each animation */
+#breathText {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#breathTextDot {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#breathTextWave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: matrix(1, 0, 0, 1, -270.002, -14.2753);
+  animation: bloomText 4s infinite;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  color: inherit;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Global Page Scaling (for both themes) === */
+body.light-mode,
+body.dark-mode {
+  transform: scale(0.6);
+  transform-origin: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* === Wave Ring Centered Properly === */
+#waveRing {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  width: fit-content;
+  /* optional nudge */
+  left: 194.5px; /* tweak this if needed */
+  bottom: 15px;
+}
+/* === The Wave Ring Visual Element === */
+.wave {
+  width: 200px; /* adjust if needed */
+  height: 200px; /* adjust if needed */
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  position: relative;
+  animation: waveRing 4s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Text inside the Wave Ring === */
+#breathTextWave {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+}
+/* === Remove conflicting margin styles for waveRing === */
+body.light-mode #waveRing,
+body.dark-mode #waveRing {
+  margin: 0; /* Remove the old margin-left: 210px, etc */
+  padding: 0; /* Remove padding that caused spacing issues */
 }
