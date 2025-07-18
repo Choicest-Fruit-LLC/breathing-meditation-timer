@@ -90,11 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showCallNotification() {
-    callNotification.style.display = 'block';
+    document.getElementById('callNotification').style.display = 'block';
   }
 
   function dismissNotification() {
-    callNotification.style.display = 'none';
+    document.getElementById('callNotification').style.display = 'none';
   }
 
   function startExercise() {
