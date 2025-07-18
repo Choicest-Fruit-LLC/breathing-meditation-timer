@@ -441,3 +441,17 @@ body.dark-mode #waveRing {
   margin: 0; /* Remove the old margin-left: 210px, etc */
   padding: 0; /* Remove padding that caused spacing issues */
 }
+
+/* === Background Variations === */
+body.bg-gradient {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+body.bg-forest {
+  background: url('Images/forest.jpg') center/cover no-repeat;
+}
+body.bg-ocean {
+  background: url('Images/ocean.jpg') center/cover no-repeat;
+}
+body.bg-sunrise {
+  background: url('Images/sunrise.jpg') center/cover no-repeat;
+}
