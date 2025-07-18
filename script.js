@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgAudio = document.getElementById('bgAudio');
   const playPauseBtn = document.getElementById('playPauseBtn');
   const muteBtn = document.getElementById('muteBtn');
+  const backgroundSelect = document.getElementById('backgroundSelect');
 
   // Removed pulseSquare here
   const animations = {
@@ -210,6 +211,30 @@ function showAnimation(name) {
     bgAudio.muted = !bgAudio.muted;
     muteBtn.textContent = bgAudio.muted ? 'Unmute' : 'Mute';
   });
+
+  backgroundSelect.addEventListener('change', function() {
+    body.classList.remove('bg-gradient', 'bg-ocean', 'bg-forest', 'bg-plain', 'bg-sunrise');
+    switch (backgroundSelect.value) {
+      case 'gradient':
+        body.classList.add('bg-gradient');
+        break;
+      case 'ocean':
+        body.classList.add('bg-ocean');
+        break;
+      case 'forest':
+        body.classList.add('bg-forest');
+        break;
+      case 'sunrise':
+        body.classList.add('bg-sunrise');
+        break;
+      case 'plain':
+        body.classList.add('bg-plain');
+        break;
+    }
+  });
+
+  // Optionally set default background on load
+  body.classList.add('bg-gradient');
 
   // === INIT ===
   // Show default animation
