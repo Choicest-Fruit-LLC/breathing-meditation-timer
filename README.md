@@ -18,11 +18,15 @@ This app helps users focus on calm breathing, receive positive affirmations, and
 
 ## 🧑‍💻 How to Use
 
-1. Open the app in a web browser.
-2. Click the **Start** button to begin your breathing and meditation session.
-3. Watch the circle animate as your guide.
-4. Read the positive affirmations and respond to hydration or medication reminders when they appear.
-5. Click **Pause** or **Reset** anytime.
+1. Open the app in a web browser. <img width="1343" height="759" alt="Screenshot 2025-07-18 at 2 08 09 PM" src="https://github.com/user-attachments/assets/eea8ee7a-2ce1-4539-b36b-e5a762a3b58e" />
+
+2. Click the **Start** button to begin your breathing and meditation session. <img width="1343" height="759" alt="Screenshot 2025-07-18 at 2 12 05 PM" src="https://github.com/user-attachments/assets/953ad852-165d-433e-8e55-2fd267f07b9a" />
+
+3. Watch the circle animate as your guide. 
+4. Read the positive affirmations and respond to hydration or medication reminders when they appear. <img width="1343" height="759" alt="Screenshot 2025-07-18 at 2 13 20 PM" src="https://github.com/user-attachments/assets/099433e4-8b64-4020-8a1f-d305a098fe80" />
+
+5. Click **Pause** or **Reset** anytime. <img width="1343" height="759" alt="Screenshot 2025-07-18 at 2 14 19 PM" src="https://github.com/user-attachments/assets/47eed000-d252-4063-84b6-cb7f23fcd94e" />
+
 
 ---
 
