@@ -72,7 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateBreathText(text) {
     ['breathText', 'breathTextDot', 'breathTextWave', 'breathTextSquare'].forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.textContent = text;
+      if (el) {
+        el.textContent = text;
+        el.classList.remove('breathe-in', 'breathe-out');
+        if (text === 'Breathe In') {
+          el.classList.add('breathe-in');
+        } else if (text === 'Breathe Out') {
+          el.classList.add('breathe-out');
+        }
+      }
     });
   }
 
@@ -99,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function dismissNotification() {
-    document.getElementById('callNotification').style.display = 'none';
+    const callNotification = document.getElementById('callNotification');
+    callNotification.style.display = 'none';
   }
 
   function startExercise() {
@@ -249,3 +258,4 @@ function showAnimation(name) {
   document.getElementById('resetBtn').addEventListener('click', resetExercise);
   document.getElementById('dismissNotificationBtn').addEventListener('click', dismissNotification);
 });
+
